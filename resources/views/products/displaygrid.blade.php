@@ -5,6 +5,18 @@
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <ul class="navbar-nav ms-auto">
 
+
+            <li class="nav-item" style="margin-right:5px;">
+            <select id="colourselect" class="form-select" size="1">
+            <option value="All">All</option>
+            <option value="Blue">Blue</option>
+            <option value="Red">Red</option>
+            <option value="Green">Green</option>
+            <option value="Yellow">Yellow</option>
+            <option value="Orange">Orange</option>
+            </select>
+            </li>
+
             <li class="nav-item">
                 <a href="{{route('scorder.checkout')}}"
                    class="btn btn-primary"
@@ -41,7 +53,7 @@
 
 @foreach($products as $product)
 
-<div class="p-2 border col-4 g-3">
+<div class="p-2 border col-4 g-3 allcolours {{ $product->colour }}">
     <div class="card text-center">
 
         <div class="card-header">
@@ -107,7 +119,18 @@ $(document).ready(function() {
 });
 </script>
 
-
+<script>
+$("#colourselect").on('change', function() {
+ var colour = $(this).find(":selected").val();
+ if (colour=='All') {
+ $('.allcolours').show();
+ }
+ else {
+ $('.allcolours').hide();
+ $('.'+colour).show();
+ } 
+});
+</script>
 
 
 
