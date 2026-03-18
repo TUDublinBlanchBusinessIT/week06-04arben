@@ -15,4 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+
+
 });
+
+Route::get('product/displaygrid','App\Http\Controllers\productController@displayGrid')
+->name('products.displaygrid');
