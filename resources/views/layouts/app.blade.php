@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head >
         <meta charset="UTF-8">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <title>{{ config('app.name') }}</title>
         <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
