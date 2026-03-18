@@ -25,9 +25,8 @@
             </li>
 
             <li class="nav-item">
-                <div id="shoppingcart"
-                    style="color:white; margin-left:5px;">
-                    0
+                <div id="shoppingcart"style="color:white; margin-left:5px;">
+                    {{$totalItems}}
                 </div>
             </li>
 
@@ -65,22 +64,43 @@
 
 </div>
 <script>
-$(".addItem").click(function() {
 
-    var id = $(this).val();
+$(document).ready(function() {
 
-    $.ajax({
-        type: "GET",
-        url: "/product/additem/" + id,
+    $(".addItem").click(function() {
 
-        success: function(response) {
-            $('#shoppingcart').text(response.total);
-        },
+        var id = $(this).val();
 
-        error: function() {
-            alert("Error adding item");
-        }
+        $.ajax({
+            type: "GET",
+            url: "/product/additem/" + id,
+
+            success: function(response) {
+                $('#shoppingcart').text(response.total);
+            },
+
+            error: function() {
+                alert("Error adding item");
+            }
+        });
     });
+
+    $("#emptycart").click(function() {
+
+        $.ajax({
+            type: "get",
+            url: "{{ url('product/emptycart') }}",
+
+            success: function() {
+                $('#shoppingcart').text(0);
+            },
+
+            error: function() {
+                alert("problem communicating with the server");
+            }
+        });
+    });
+
 });
 </script>
 

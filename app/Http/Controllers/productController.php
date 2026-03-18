@@ -9,11 +9,25 @@ use Illuminate\Support\Facades\Response;
 
 class productController extends Controller
 {
-    public function displayGrid()
+    public function displayGrid(Request $request)
     {
-        $products = Product::all();
+        $products=\App\Models\Product::all();
+        
+        if ($request->session()->has('cart')) {
+            $cart = $request->session()->get('cart');
+            
+            $totalQty=0;
+            foreach ($cart as $product => $qty) {
+                $totalQty = $totalQty + $qty;
+            }
+            $totalItems=$totalQty;
+        }
+        else {
+            $totalItems=0;
+            
+        }
         return view('products.displaygrid')
-            ->with('products', $products);
+        ->with('products',$products)->with('totalItems',$totalItems);
     }
 
     public function additem($productid)
@@ -36,5 +50,12 @@ class productController extends Controller
             'success' => true,
             'total' => array_sum($cart)
         ], 200);
+    }
+    public function emptycart()
+    {
+        if (Session::has('cart')) {
+            Session::forget('cart');
+        }
+        return Response::json(['success'=>true],200);
     }
 }
