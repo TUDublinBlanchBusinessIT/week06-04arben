@@ -58,4 +58,6 @@ class productController extends Controller
         }
         return Response::json(['success'=>true],200);
     }
+
+
 }

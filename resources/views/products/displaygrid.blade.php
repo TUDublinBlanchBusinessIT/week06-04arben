@@ -6,10 +6,13 @@
         <ul class="navbar-nav ms-auto">
 
             <li class="nav-item">
-                <button id="checkOut" type="button"
-                    class="btn btn-primary" style="margin-right:5px;">
+                <a href="{{route('scorder.checkout')}}"
+                   class="btn btn-primary"
+                   style="margin-right:5px;">
                     Check Out
-                </button>
+                </a>
+               
+                
             </li>
 
             <li class="nav-item">
